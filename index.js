@@ -1,3 +1,4 @@
+// Build server
 const express = require("express");
 const app = express();
 app.use(express.static("./public"));
@@ -10,6 +11,9 @@ server.listen(8888);
 
 io.on("connection", function(socket){
     console.log("There is connection: " + socket.id);
+    socket.on("disconnect",function(){
+        console.log(socket.id + "is disconnected")
+    });
 });
 
 app.get("/",function(req,res){
