@@ -5,12 +5,19 @@
 <script src="socket.io/socket.io.js"></script>
 <script>
     var socket = io("http://localhost:8888")
+    socket.on("Server-sends-data", function(data){
+        $('#content').append(data + ", ");
+    });
+
     $(document).ready(function(){
-        alert("hello jquery");
+        $('#buttonA').click(function(){
+            socket.emit("Client-sends-data","UHMMMM");
+        });
     });
 </script>
 </head>
 <body>
-Hello world!
+    <div id="buttonA">Click on</div>
+    <h1 id="content"></h1>
 </body>
 </html>

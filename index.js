@@ -12,7 +12,11 @@ server.listen(8888);
 io.on("connection", function(socket){
     console.log("There is connection: " + socket.id);
     socket.on("disconnect",function(){
-        console.log(socket.id + "is disconnected")
+        console.log(socket.id + " is disconnected")
+    });
+    socket.on("Client-sends-data", function(data){
+        console.log(socket.id + " sends " + data);
+        io.sockets.emit("Server-sends-data", data + "8888");
     });
 });
 
