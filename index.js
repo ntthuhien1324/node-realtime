@@ -16,7 +16,14 @@ io.on("connection", function(socket){
     });
     socket.on("Client-sends-data", function(data){
         console.log(socket.id + " sends " + data);
-        io.sockets.emit("Server-sends-data", data + "8888");
+        //Send to all ids.
+        // io.sockets.emit("Server-sends-data", data + "8888");
+
+        //Send to id
+        socket.emit("Server-sends-data", data + "8888");
+
+        //send to other ids
+        // socket.broadcast.emit("Server-sends-data", data + "8888");
     });
 });
 
